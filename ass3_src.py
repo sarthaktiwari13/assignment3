@@ -6,6 +6,7 @@ import re
 import numpy as np
 from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
+from urllib.request import urlopen
 
 class TweetProcessor():
     """Class to Pre Process Tweets"""
@@ -39,9 +40,10 @@ class TweetProcessor():
         return tk.tokenize(s)
     def token_to_index(self, text):
         """Token to Index """
-        glove_file = "glove.twitter.27B.25d.txt"
+        glove = urlopen('https://curren-tipnis-ass3.s3.amazonaws.com/glove.twitter.27B.25d.txt')
+        #glove_file = "glove.twitter.27B.25d.txt"
         emb_dict = {}
-        glove = open(glove_file)
+        #glove = open(glove_file)
         for line in glove:
             values = line.split()
             word = values[0]
